@@ -7,17 +7,19 @@ const route = express.Router()
 
 route.post('/addtask', async ( req, res) => {
 
-    const{taskname}= req.body;
+    const{taskname,time}= req.body;
 
         const newuser= new user ({
             
-            taskname:req.body.taskname
+            taskname:req.body.taskname,
+            time:req.body.time
            
         })
 
         await newuser.save()
 
-        res.send("task added successfully")
+        res.send("task  and time added successfully")
+
     
 
 

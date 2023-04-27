@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
     taskname :{
         type: String,
         required: true
+    },
+
+    time :{
+        type: String,
+        required: true
     }
 
     
