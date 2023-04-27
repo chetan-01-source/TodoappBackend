@@ -25,11 +25,11 @@ route.post('/addtask', async ( req, res) => {
 
 const User = mongoose.model("Usercollection");
 
-route.get('/addtask', async(req, res) => {
+route.get('/gettask', async(req, res) => {
   try{
 
     const alluser = await User.find({});
-    res.send({status : "ok", data: alluser});
+    res.send(alluser);
     
   } 
   
