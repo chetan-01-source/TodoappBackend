@@ -6,7 +6,6 @@ const userSchema = require('../modal/userSchema');
 const route = express.Router()
 
 
-
 route.post('/addtask', async ( req, res) => {
 
     const{taskname,time}= req.body;
