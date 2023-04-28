@@ -1,4 +1,5 @@
 const express= require('express')
+const mongodb=require('mongodb')
 const user = require('../modal/userSchema');
 const { default: mongoose } = require('mongoose');
 const route = express.Router()
@@ -41,6 +42,12 @@ route.get('/gettask', async(req, res) => {
   }
 })
 
+route.delete('/:id', async(req, res) =>{
+  console.log(req.params.id)
+  const data= await user();
+  const result= await data.deleteOne({_id:new mongodb.ObjectId(req.params.id)})
+  res.send(result)
 
+})
 
 module.exports = route
