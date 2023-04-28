@@ -2,6 +2,7 @@ const express= require('express')
 const mongodb=require('mongodb')
 const user = require('../modal/userSchema');
 const { default: mongoose } = require('mongoose');
+const userSchema = require('../modal/userSchema');
 const route = express.Router()
 
 
@@ -42,12 +43,20 @@ route.get('/gettask', async(req, res) => {
   }
 })
 
-route.delete('/:id', async(req, res) =>{
-  console.log(req.params.id)
-  const data= await user();
-  const result= await data.deleteOne({_id:new mongodb.ObjectId(req.params.id)})
-  res.send(result)
-
-})
+route.delete('/del/:id',(req,res,next)=>{
+  User.findOneAndRemove({_id:req.params.id})
+  .then(result=>{
+    res.status(200).json({
+      message:"product deleted",
+      result:result
+    })
+  })
+  .catch(err=>{
+    res.status(500).json({
+      error:err
+    })
+  })
+}
+)
 
 module.exports = route
