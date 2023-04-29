@@ -78,4 +78,19 @@ route.put('/put/:id',(req,res,next)=>{
   })
 })
 
+route.delete('/deleteall',(req,res,next)=>{
+  User.deleteMany()
+  .then(result=>{
+    res.status(200).json({
+      message:" all product deleted",
+      result:result
+    })
+  })
+  .catch(err=>{
+    res.status(500).json({
+      error:err
+    })
+  })
+}
+)
 module.exports = route
