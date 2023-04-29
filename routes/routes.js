@@ -57,5 +57,25 @@ route.delete('/del/:id',(req,res,next)=>{
   })
 }
 )
+route.put('/put/:id',(req,res,next)=>{
+  console.log(req.params.id);
+  User.findOneAndUpdate({_id:req.params.id},{
+    $set:{
+      taskname:req.body.taskname,
+      time:req.body.time
+    }
+  })
+  .then(result=>{
+    res.status(200).json({
+      updated_task: result
+    })
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).json({
+      error:err
+    })
+  })
+})
 
 module.exports = route
